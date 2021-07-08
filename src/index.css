@@ -1,13 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Uchen&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Uchen";
+  font-size: medium;
+  background-image: url(https://pbs.twimg.com/media/EVvJpmgU8AAEq2q?format=jpg&name=large);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  text-align: center;
+  /* background-image: url(https://pbs.twimg.com/media/EVvJpmgU8AAEq2q?format=jpg&name=large); */
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.8px yellow;
+
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.search-container {
+  display: flex;
+  /* justify-content: center; */
+}
+
+.search-bar {
+  /* width: 100%;
+  max-width: 300px;
+  display: inline-flex;
+  margin-top: 50px;
+  font-size: 100px; */
+  width: 250px;
+}
+
+.dossier-container {
+background-color: rgb(255, 255, 255);
+opacity: 70%;
+border-radius: 6px;
+color: black;
+max-width: 430px;
+
+}
+
+/* .fetch-button { */
+  /* width: 10px; */
+/* } */
+
+.dossier-title {
+  font-size: 23px;
 }
