@@ -1,32 +1,47 @@
 import { Icon, IconButton } from 'rsuite';
+import { Loader } from 'rsuite';
 
 import './index.css';
 
 import { useState } from 'react'; 
 import GetCharactersButton from './GetCharactersButton.jsx';
+import { getStarWarsCharacter } from './utils';
+
 import Dossier from './Dossier';
-import FetchMessage from './FetchMessage';
 
 const App = () => {
 
   const [characters, setCharacters] = useState(null);
-  const [url, setUrl] = useState(null);
+  const [fetchedData, setFetchedData] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
   return (
     <div className="App">
       <h1>Star Wars Characters</h1> 
         <GetCharactersButton
           className="fetch-button"
-          onChange={setCharacters}
+          characters={setCharacters}
+          fetchedData={setFetchedData}
         />
+        {/* <Loader backdrop content="loading..." vertical speed="slow"/> */}
 
-        <FetchMessage data={characters}/>
-        
-        <div className="search-container">
+        <div className="page-navigation">
+          <IconButton onClick={() => getStarWarsCharacter(fetchedData.previous, (data) => {
+            setFetchedData(data)
+            setCharacters(data.results)
+            setPageNumber(pageNumber-1)
+          })} icon={<Icon icon="arrow-left" />} placement="right"></IconButton>
+          <div className="page-number">{pageNumber}</div>
 
-        </div>
-        <div className="dossiers-container">
-        {characters ? characters.map((el,index) => <Dossier key={`character+${index}`}data={el}/>) : characters }
+          <IconButton onClick={() => getStarWarsCharacter(fetchedData.next,(data) => {
+            setFetchedData(data)
+            setCharacters(data.results)
+            setPageNumber(pageNumber+1)
+          })} icon={<Icon icon="arrow-right" />} placement="right"></IconButton>
+        </div>  
+
+        <div className="dossiers-container"> 
+          {characters ? characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>) : characters }
         </div>
 
     </div>

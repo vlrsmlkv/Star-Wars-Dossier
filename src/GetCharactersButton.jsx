@@ -1,27 +1,22 @@
 import { Button } from 'rsuite';
+import { getStarWarsCharacter } from './utils';
 
-const GetCharactersButton = ({value, onChange}) => {
+const starWarsurl = 'https://swapi.dev/api/people/';
 
-// const getStarWarsCharacter = async () => {
-
-  // const response = await fetch('https://swapi.dev/api/people/'); // first version
-  // const data = await response.json()
-  // onChange(data.results)
-
-  // }
-
-  const getStarWarsCharacter = () => {
-    fetch('https://swapi.dev/api/people/') // second version
-    .then(response => 
-      response.ok 
-      ? response.json().then(data => {
-          onChange(data.results)
-        })
-      : console.log('Network request for characters failed with response ' + response.status + ': ' + response.statusText))
-  }
+const GetCharactersButton = ({characters, fetchedData}) => {
 
   return (
-      <Button value={value} onClick={getStarWarsCharacter} appearance="ghost" color="blue">Click me to fetch</Button>
+      <Button 
+        onClick={() => {
+          getStarWarsCharacter(starWarsurl, (data) => {
+            fetchedData(data)
+            characters(data.results)
+          })
+        }}   
+        appearance="ghost" 
+        color="blue">
+        Click me to fetch
+      </Button>
   )
 
 }

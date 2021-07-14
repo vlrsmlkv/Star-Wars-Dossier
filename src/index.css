@@ -9,10 +9,8 @@ body {
 
 h1 {
   text-align: center;
-  /* background-image: url(https://pbs.twimg.com/media/EVvJpmgU8AAEq2q?format=jpg&name=large); */
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0.8px yellow;
-
 }
 
 .App {
@@ -23,20 +21,6 @@ h1 {
   text-align: center;
 }
 
-/* .search-container {
-  display: flex;
-  justify-content: center;
-} */
-
-/* .search-bar {
-  width: 100%;
-  max-width: 300px;
-  display: inline-flex;
-  margin-top: 50px;
-  font-size: 100px;
-  width: 250px;
-} */
-
 .dossier-container {
 background-color: rgb(255, 255, 255);
 opacity: 70%;
@@ -45,10 +29,6 @@ color: black;
 max-width: 420px;
 margin: 8px 8px;
 }
-
-/* .fetch-button { */
-  /* width: 10px; */
-/* } */
 
 .dossier-title {
   font-size: 23px;
@@ -59,5 +39,17 @@ margin: 8px 8px;
   flex-wrap: wrap;
   margin: 0px 20px 0px 20px;
   /* justify-content: space-around; */
- 
+}
+
+.page-navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  opacity: 90%;
+
+}
+
+.page-number {
+  font-size: large;
+  color: rgb(230, 230, 230);
 }
