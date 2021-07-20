@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Star-Wars-Dossier/static/css/main.0e550942.chunk.css",
+    "main.js": "/Star-Wars-Dossier/static/js/main.cefd7103.chunk.js",
+    "main.js.map": "/Star-Wars-Dossier/static/js/main.cefd7103.chunk.js.map",
+    "runtime-main.js": "/Star-Wars-Dossier/static/js/runtime-main.340d9054.js",
+    "runtime-main.js.map": "/Star-Wars-Dossier/static/js/runtime-main.340d9054.js.map",
+    "static/css/2.7785af68.chunk.css": "/Star-Wars-Dossier/static/css/2.7785af68.chunk.css",
+    "static/js/2.736f8ee8.chunk.js": "/Star-Wars-Dossier/static/js/2.736f8ee8.chunk.js",
+    "static/js/2.736f8ee8.chunk.js.map": "/Star-Wars-Dossier/static/js/2.736f8ee8.chunk.js.map",
+    "index.html": "/Star-Wars-Dossier/index.html",
+    "static/css/2.7785af68.chunk.css.map": "/Star-Wars-Dossier/static/css/2.7785af68.chunk.css.map",
+    "static/css/main.0e550942.chunk.css.map": "/Star-Wars-Dossier/static/css/main.0e550942.chunk.css.map",
+    "static/js/2.736f8ee8.chunk.js.LICENSE.txt": "/Star-Wars-Dossier/static/js/2.736f8ee8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.340d9054.js",
+    "static/css/2.7785af68.chunk.css",
+    "static/js/2.736f8ee8.chunk.js",
+    "static/css/main.0e550942.chunk.css",
+    "static/js/main.cefd7103.chunk.js"
+  ]
+}
