@@ -1,12 +1,13 @@
-const getStarWarsCharacter = (url, onFetchedData) => { 
-    
-    if (url) {
-    fetch(url) 
-    .then(response => 
-      response.ok 
-      ? (response.json().then(data => onFetchedData(data)))
-      : console.log('Network request for characters failed with response ' + response.status + ': ' + response.statusText))
-    }  
+import axios from 'axios';
+
+const getStarWarsCharacter = (url, onFetchedData, setIsLoading) => { 
+  setIsLoading(true)
+  axios.get(url) 
+    .then(response => {
+      onFetchedData(response.data);
+      setIsLoading(false);
+    })
+    .catch(error => console.error(`Error: ${error}`))
 }
 
 export { getStarWarsCharacter }

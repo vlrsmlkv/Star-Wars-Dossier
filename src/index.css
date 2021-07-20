@@ -38,15 +38,24 @@ margin: 8px 8px;
   display: flex;
   flex-wrap: wrap;
   margin: 0px 20px 0px 20px;
-  /* justify-content: space-around; */
 }
 
-.page-navigation {
+.page-pagination-top, .page-pagination-bottom {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
   opacity: 90%;
+  width: 150px;
+}
 
+.page-pagination-bottom, .page-up-button {
+  bottom: 10px;
+  position: fixed;
+}
+
+.page-up-button {
+  right: 10px;
 }
 
 .page-number {
