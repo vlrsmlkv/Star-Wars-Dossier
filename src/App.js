@@ -1,9 +1,11 @@
 import { Icon, IconButton } from 'rsuite';
 import { Loader } from 'rsuite';
+import { FlexboxGrid } from 'rsuite';
 
 import './index.css';
 
 import { useState } from 'react'; 
+import { useEffect } from 'react';
 import CharactersButton from './CharactersButton.jsx';
 import { getStarWarsCharacter } from './utils';
 
@@ -15,6 +17,13 @@ const App = () => {
   const [fetchedData, setFetchedData] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [isVisibleButton, setIsVisibleButton] = useState(false);
+
+  const toggleButtonVisibility = () => {
+    setIsVisibleButton((window.pageYOffset > 140) ? true : false)
+  }
+
+  useEffect(() => {window.addEventListener('scroll', toggleButtonVisibility)});
 
   return (
     <div className="App">
@@ -57,12 +66,12 @@ const App = () => {
             disabled={!fetchedData.next || isLoading}>
           </IconButton>
         </div>}  
-
-        <div className="dossiers-container"> 
+        
+        <FlexboxGrid justify="center">
           {!isLoading && characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
-        </div>
+        </FlexboxGrid>
 
-        {fetchedData && <div className="page-pagination-bottom">
+        {fetchedData && isVisibleButton && <div className="page-pagination-bottom">
           <IconButton 
             onClick={() => {
               getStarWarsCharacter(fetchedData.previous, (data) => {
@@ -94,6 +103,7 @@ const App = () => {
         
         {fetchedData && <div className="page-up-button">
           <IconButton
+            style={{display: isVisibleButton ? "inline" : "none"}}
             icon={<Icon icon="angle-double-up"/>}
             size="lg"
             onClick={() => window.scrollTo({
