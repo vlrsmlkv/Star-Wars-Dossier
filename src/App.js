@@ -34,8 +34,8 @@ const App = () => {
           fetchedData={setFetchedData}
           setIsLoading={setIsLoading}/>
         }
-
-        {isLoading && <Loader size="lg" inverse center content="Fetching characters..." vertical />}
+        
+        {isLoading && !fetchedData && <Loader size="lg" inverse center content="Fetching characters..." vertical />}
 
         {fetchedData && <div className="page-pagination-top">
           <IconButton 
@@ -67,8 +67,9 @@ const App = () => {
           </IconButton>
         </div>}  
         
-        <FlexboxGrid justify="center">
-          {!isLoading && characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
+        <FlexboxGrid style={{position: "relative"}} justify="center">
+          {isLoading && fetchedData && <Loader className="loader" backdrop size="lg" inverse content="Fetching characters..." vertical />}
+          {characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
         </FlexboxGrid>
 
         {fetchedData && isVisibleButton && <div className="page-pagination-bottom">
