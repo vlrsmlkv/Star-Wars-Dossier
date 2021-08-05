@@ -23,7 +23,10 @@ const App = () => {
     setIsVisibleButton((window.pageYOffset > 140) ? true : false)
   }
 
-  useEffect(() => {window.addEventListener('scroll', toggleButtonVisibility)});
+  useEffect(() => {
+    window.addEventListener('scroll', toggleButtonVisibility)
+    return () => window.removeEventListener('scroll', toggleButtonVisibility)
+  });
 
   return (
     <div className="App">
