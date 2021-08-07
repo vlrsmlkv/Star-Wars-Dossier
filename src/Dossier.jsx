@@ -5,7 +5,7 @@ const Dossier = ({data}) => {
   if (!data) return null;
 
   return (
-    <FlexboxGrid.Item componentClass={Col} colspan={8} md={8} sm={12}>
+    <FlexboxGrid.Item componentClass={Col} md={8} sm={12} xs={24}>
       <FlexboxGrid className="dossier-container">
         <FlexboxGrid.Item colspan={24} className="dossier-title">{data.name}</FlexboxGrid.Item>
         <FlexboxGrid.Item colspan={24}>
