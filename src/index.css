@@ -1,11 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Uchen&display=swap");
 
-html, #root {
-  height: 100%;
+html {
+  min-height: 100vh;
+}
+
+body, #root, .App, .loader {
+  min-height: inherit;
 }
 
 body {
-  height: inherit;
   font-size: medium;
   background-image: url(https://pbs.twimg.com/media/EVvJpmgU8AAEq2q?format=jpg&name=large);
 }
@@ -14,17 +17,12 @@ h1 {
   text-align: center;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0.8px yellow;
+  padding: 15px 0px 20px 0px;
 }
 
 .App {
-  margin-top: 10px;
   text-align: center;
   position: relative;
-  height: inherit;
-}
-
-.loader {
-  position: absolute;
 }
 
 .dossier-container {
@@ -32,7 +30,7 @@ background-color: rgb(255, 255, 255);
 opacity: 70%;
 border-radius: 2px;
 color: black;
-height: 220px;
+height: 250px;
 max-width: 420px;
 margin: 8px 8px;
 }
@@ -54,6 +52,7 @@ margin: 8px 8px;
 .page-up-button {
   bottom: 10px;
   position: fixed;
+  /* position: sticky; */
 }
 
 .page-pagination-bottom {
@@ -72,5 +71,5 @@ margin: 8px 8px;
 }
 
 .dossiers-container {
-  margin: 0px 63px 20px 63px;
+  margin: 10px 63px 20px 63px;
 }
