@@ -6,7 +6,6 @@ import './index.css';
 
 import { useState } from 'react'; 
 import { useEffect } from 'react';
-import CharactersButton from './CharactersButton.jsx';
 import { getStarWarsCharacter } from './utils';
 
 import Dossier from './Dossier';
@@ -19,6 +18,15 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isVisibleButton, setIsVisibleButton] = useState(false);
 
+  const starWarsUrl = 'https://swapi.py4e.com/api/people/';
+  
+  useEffect(() => {
+    getStarWarsCharacter(starWarsUrl, (data) => {
+      setFetchedData(data)
+      setCharacters(data.results)
+    }, setIsLoading)
+  }, []);
+  
   const toggleButtonVisibility = () => {
     setIsVisibleButton((window.pageYOffset > 140) ? true : false)
   }
@@ -31,12 +39,6 @@ const App = () => {
   return (
     <div className="App">
       <h1>Star Wars Characters</h1> 
-      {!fetchedData && <CharactersButton
-        className="fetch-button"
-        characters={setCharacters}
-        fetchedData={setFetchedData}
-        setIsLoading={setIsLoading}/>
-      }
 
       {isLoading && <Loader className="loader" backdrop size="lg" inverse content="Fetching characters..." vertical />}
 
