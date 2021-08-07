@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Star-Wars-Dossier/static/css/main.1362fddf.chunk.css",
-    "main.js": "/Star-Wars-Dossier/static/js/main.d9b9d90b.chunk.js",
-    "main.js.map": "/Star-Wars-Dossier/static/js/main.d9b9d90b.chunk.js.map",
+    "main.js": "/Star-Wars-Dossier/static/js/main.8bed486e.chunk.js",
+    "main.js.map": "/Star-Wars-Dossier/static/js/main.8bed486e.chunk.js.map",
     "runtime-main.js": "/Star-Wars-Dossier/static/js/runtime-main.340d9054.js",
     "runtime-main.js.map": "/Star-Wars-Dossier/static/js/runtime-main.340d9054.js.map",
     "static/css/2.7785af68.chunk.css": "/Star-Wars-Dossier/static/css/2.7785af68.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.7785af68.chunk.css",
     "static/js/2.de993558.chunk.js",
     "static/css/main.1362fddf.chunk.css",
-    "static/js/main.d9b9d90b.chunk.js"
+    "static/js/main.8bed486e.chunk.js"
   ]
 }
