@@ -26,96 +26,95 @@ const App = () => {
   useEffect(() => {
     window.addEventListener('scroll', toggleButtonVisibility)
     return () => window.removeEventListener('scroll', toggleButtonVisibility)
-  });
+  }, []);
 
   return (
     <div className="App">
       <h1>Star Wars Characters</h1> 
-        {!fetchedData && <CharactersButton
-          className="fetch-button"
-          characters={setCharacters}
-          fetchedData={setFetchedData}
-          setIsLoading={setIsLoading}/>
-        }
+      {!fetchedData && <CharactersButton
+        className="fetch-button"
+        characters={setCharacters}
+        fetchedData={setFetchedData}
+        setIsLoading={setIsLoading}/>
+      }
+
+      {isLoading && <Loader className="loader" backdrop size="lg" inverse content="Fetching characters..." vertical />}
+
+      {fetchedData && <div className="page-pagination-top">
+        <IconButton 
+          onClick={() => {
+            getStarWarsCharacter(fetchedData.previous, (data) => {
+              setFetchedData(data)
+              setCharacters(data.results)
+            }, setIsLoading)
+            setPageNumber(fetchedData.previous ? pageNumber-1 : pageNumber)
+          }} 
+          icon={<Icon icon="arrow-left" />} 
+          placement="right"
+          disabled={!fetchedData.previous || isLoading}>
+        </IconButton> 
+
+        <div className="page-number">{pageNumber}</div>
+
+        <IconButton
+          onClick={() => {
+            getStarWarsCharacter(fetchedData.next, (data) => {
+              setFetchedData(data)
+              setCharacters(data.results)
+            }, setIsLoading)
+            setPageNumber(fetchedData.next ? pageNumber+1 : pageNumber)
+          }} 
+          icon={<Icon icon="arrow-right"/>} 
+          placement="right"
+          disabled={!fetchedData.next || isLoading}>
+        </IconButton>
+      </div>}  
+      
+      <FlexboxGrid className="dossiers-container" justify="start">
+        {characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
+      </FlexboxGrid>
+
+      {fetchedData && isVisibleButton && <div className="page-pagination-bottom">
+        <IconButton 
+          onClick={() => {
+            getStarWarsCharacter(fetchedData.previous, (data) => {
+              setFetchedData(data)
+              setCharacters(data.results)
+            }, setIsLoading)
+            setPageNumber(fetchedData.previous ? pageNumber-1 : pageNumber)
+          }} 
+          icon={<Icon icon="arrow-left" />} 
+          placement="right"
+          disabled={!fetchedData.previous || isLoading}>
+        </IconButton> 
+
+        <div className="page-number">{pageNumber}</div>
         
-        {isLoading && !fetchedData && <Loader size="lg" inverse center content="Fetching characters..." vertical />}
-
-        {fetchedData && <div className="page-pagination-top">
-          <IconButton 
-            onClick={() => {
-              getStarWarsCharacter(fetchedData.previous, (data) => {
-                setFetchedData(data)
-                setCharacters(data.results)
-              }, setIsLoading)
-              setPageNumber(fetchedData.previous ? pageNumber-1 : pageNumber)
-            }} 
-            icon={<Icon icon="arrow-left" />} 
-            placement="right"
-            disabled={!fetchedData.previous || isLoading}>
-          </IconButton> 
-
-          <div className="page-number">{pageNumber}</div>
-
-          <IconButton
-            onClick={() => {
-              getStarWarsCharacter(fetchedData.next, (data) => {
-                setFetchedData(data)
-                setCharacters(data.results)
-              }, setIsLoading)
-              setPageNumber(fetchedData.next ? pageNumber+1 : pageNumber)
-            }} 
-            icon={<Icon icon="arrow-right"/>} 
-            placement="right"
-            disabled={!fetchedData.next || isLoading}>
-          </IconButton>
-        </div>}  
-        
-        <FlexboxGrid style={{position: "relative"}} justify="center">
-          {isLoading && fetchedData && <Loader className="loader" backdrop size="lg" inverse content="Fetching characters..." vertical />}
-          {characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
-        </FlexboxGrid>
-
-        {fetchedData && isVisibleButton && <div className="page-pagination-bottom">
-          <IconButton 
-            onClick={() => {
-              getStarWarsCharacter(fetchedData.previous, (data) => {
-                setFetchedData(data)
-                setCharacters(data.results)
-              }, setIsLoading)
-              setPageNumber(fetchedData.previous ? pageNumber-1 : pageNumber)
-            }} 
-            icon={<Icon icon="arrow-left" />} 
-            placement="right"
-            disabled={!fetchedData.previous || isLoading}>
-          </IconButton> 
-
-          <div className="page-number">{pageNumber}</div>
-          
-          <IconButton
-            onClick={() => {
-              getStarWarsCharacter(fetchedData.next, (data) => {
-                setFetchedData(data)
-                setCharacters(data.results)
-              }, setIsLoading)
-              setPageNumber(fetchedData.next ? pageNumber+1 : pageNumber)
-            }} 
-            icon={<Icon icon="arrow-right"/>} 
-            placement="right"
-            disabled={!fetchedData.next || isLoading}>
-          </IconButton>
-        </div>} 
-        
-        {fetchedData && <div className="page-up-button">
-          <IconButton
-            style={{display: isVisibleButton ? "inline" : "none"}}
-            icon={<Icon icon="angle-double-up"/>}
-            size="lg"
-            onClick={() => window.scrollTo({
-              top: 0,
-              behavior: "smooth"
-            })}>
-          </IconButton>
-        </div>}
+        <IconButton
+          onClick={() => {
+            getStarWarsCharacter(fetchedData.next, (data) => {
+              setFetchedData(data)
+              setCharacters(data.results)
+            }, setIsLoading)
+            setPageNumber(fetchedData.next ? pageNumber+1 : pageNumber)
+          }} 
+          icon={<Icon icon="arrow-right"/>} 
+          placement="right"
+          disabled={!fetchedData.next || isLoading}>
+        </IconButton>
+      </div>} 
+      
+      {fetchedData && <div className="page-up-button">
+        <IconButton
+          style={{display: isVisibleButton ? "inline" : "none"}}
+          icon={<Icon icon="angle-double-up"/>}
+          size="lg"
+          onClick={() => window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          })}>
+        </IconButton>
+      </div>}
 
     </div>
   );

@@ -1,7 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Uchen&display=swap");
 
+html, #root {
+  height: 100%;
+}
+
 body {
-  margin: 0;
+  height: inherit;
   font-size: medium;
   background-image: url(https://pbs.twimg.com/media/EVvJpmgU8AAEq2q?format=jpg&name=large);
 }
@@ -15,6 +19,12 @@ h1 {
 .App {
   margin-top: 10px;
   text-align: center;
+  position: relative;
+  height: inherit;
+}
+
+.loader {
+  position: absolute;
 }
 
 .dossier-container {
@@ -38,12 +48,17 @@ margin: 8px 8px;
   justify-content: space-around;
   opacity: 90%;
   width: 150px;
-  margin-left: 63px;
+  margin-left: 60px;
 }
 
-.page-pagination-bottom, .page-up-button {
+.page-up-button {
   bottom: 10px;
   position: fixed;
+}
+
+.page-pagination-bottom {
+  position: relative;
+  bottom: 10px;
 }
 
 .page-up-button {
@@ -54,4 +69,8 @@ margin: 8px 8px;
 .page-number {
   font-size: large;
   color: rgb(230, 230, 230);
+}
+
+.dossiers-container {
+  margin: 0px 63px 20px 63px;
 }

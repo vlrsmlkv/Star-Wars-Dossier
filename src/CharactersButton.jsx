@@ -1,7 +1,7 @@
 import { Button } from 'rsuite';
 import { getStarWarsCharacter } from './utils';
 
-const starWarsurl = 'https://swapi.dev/api/people/';
+const starWarsurl = 'https://swapi.py4e.com/api/people/';
 
 const CharactersButton = ({characters, fetchedData, setIsLoading}) => {
 
