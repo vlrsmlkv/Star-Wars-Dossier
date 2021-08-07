@@ -26,13 +26,13 @@ h1 {
 }
 
 .dossier-container {
-background-color: rgb(255, 255, 255);
-opacity: 70%;
-border-radius: 2px;
-color: black;
-height: 250px;
-max-width: 420px;
-margin: 8px 8px;
+  background-color: rgb(255, 255, 255);
+  opacity: 0.7;
+  border-radius: 2px;
+  color: black;
+  height: 250px;
+  max-width: 420px;
+  margin: 8px 8px;
 }
 
 .dossier-title {
@@ -44,15 +44,14 @@ margin: 8px 8px;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  opacity: 90%;
+  opacity: 0.9;
   width: 150px;
-  margin-left: 60px;
+  margin-left: 64px;
 }
 
 .page-up-button {
   bottom: 10px;
   position: fixed;
-  /* position: sticky; */
 }
 
 .page-pagination-bottom {
@@ -61,7 +60,7 @@ margin: 8px 8px;
 }
 
 .page-up-button {
-  right: 10px;
+  right: 12px;
   margin-right: 63px;
 }
 
