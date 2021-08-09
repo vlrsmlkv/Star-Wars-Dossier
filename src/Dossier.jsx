@@ -1,4 +1,5 @@
 import { FlexboxGrid, Col } from 'rsuite';
+import DossierItem from './DossierItem';
 
 const Dossier = ({data}) => {
 
@@ -8,52 +9,34 @@ const Dossier = ({data}) => {
     <FlexboxGrid.Item componentClass={Col} md={8} sm={12} xs={24}>
       <FlexboxGrid className="dossier-container">
         <FlexboxGrid.Item colspan={24} className="dossier-title">{data.name}</FlexboxGrid.Item>
-        <FlexboxGrid.Item colspan={24}>
-            <FlexboxGrid justify="space-around">
-              <FlexboxGrid.Item md={12}>Gender</FlexboxGrid.Item>
-              <FlexboxGrid.Item md={12}>{data.gender}</FlexboxGrid.Item>
-            </FlexboxGrid>
-        </FlexboxGrid.Item> 
-        <FlexboxGrid.Item colspan={24}>
-          <FlexboxGrid justify="space-around">
-            <FlexboxGrid.Item md={12}>Date of birth</FlexboxGrid.Item>
-            <FlexboxGrid.Item md={12}>{data.birth_year}</FlexboxGrid.Item>
-          </FlexboxGrid>
-        </FlexboxGrid.Item>
-        <FlexboxGrid.Item colspan={24}>
-          <FlexboxGrid justify="space-around">
-            <FlexboxGrid.Item md={12}>Height</FlexboxGrid.Item>
-            <FlexboxGrid.Item md={12}>{data.height}</FlexboxGrid.Item>
-          </FlexboxGrid>
-        </FlexboxGrid.Item>
-        <FlexboxGrid.Item colspan={24}>
-          <FlexboxGrid justify="space-around">
-            <FlexboxGrid.Item md={12}>Mass</FlexboxGrid.Item>
-            <FlexboxGrid.Item md={12}>{data.mass}</FlexboxGrid.Item>
-          </FlexboxGrid>
-        </FlexboxGrid.Item>
-        <FlexboxGrid.Item colspan={24}>
-          <FlexboxGrid justify="space-around">
-            <FlexboxGrid.Item md={12}>Hair color</FlexboxGrid.Item>
-            <FlexboxGrid.Item md={12}>{data.hair_color}</FlexboxGrid.Item>
-          </FlexboxGrid>
-        </FlexboxGrid.Item>
-        <FlexboxGrid.Item colspan={24}>
-          <FlexboxGrid justify="space-around">
-            <FlexboxGrid.Item md={12}>Scin color</FlexboxGrid.Item>
-            <FlexboxGrid.Item md={12}>{data.skin_color}</FlexboxGrid.Item>
-          </FlexboxGrid>
-        </FlexboxGrid.Item>
-        <FlexboxGrid.Item colspan={24}>
-          <FlexboxGrid justify="space-around">
-            <FlexboxGrid.Item md={12}>Eye color</FlexboxGrid.Item>
-            <FlexboxGrid.Item md={12}>{data.eye_color}</FlexboxGrid.Item>
-          </FlexboxGrid>
-        </FlexboxGrid.Item>
-        {/* <FlexboxGrid.Item>
-            <FlexboxGrid.Item md={12}>Homeworld</FlexboxGrid.Item>
-            <FlexboxGrid.Item md={12}>{data.homeworld}</FlexboxGrid.Item>
-        </FlexboxGrid.Item>   */}
+        <DossierItem
+          name="Gender"
+          value={data.gender}
+        />
+        <DossierItem
+          name="Date of birth"
+          value={data.birth_year}
+        />
+        <DossierItem
+          name="Height"
+          value={data.height}
+        />
+        <DossierItem
+          name="Mass"
+          value={data.mass}
+        />
+        <DossierItem
+          name="Hair color"
+          value={data.hair_color}
+        />
+        <DossierItem
+          name="Skin color"
+          value={data.skin_color}
+        />
+        <DossierItem
+          name="Eye color"
+          value={data.eye_color}
+        />
       </FlexboxGrid>
     </FlexboxGrid.Item>  
   )
