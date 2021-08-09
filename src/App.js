@@ -6,7 +6,7 @@ import './index.css';
 
 import { useState } from 'react'; 
 import { useEffect } from 'react';
-import { getStarWarsCharacter } from './utils';
+import { fetchStarWarsCharacter } from './utils';
 
 import Dossier from './Dossier';
 
@@ -21,31 +21,40 @@ const App = () => {
   const starWarsUrl = 'https://swapi.py4e.com/api/people/';
   
   useEffect(() => {
-    getStarWarsCharacter(starWarsUrl, (data) => {
+    fetchStarWarsCharacter(starWarsUrl, (data) => {
       setFetchedData(data)
       setCharacters(data.results)
     }, setIsLoading)
   }, []);
   
-  const toggleButtonVisibility = () => {
+  const handlePageScroll = () => {
     setIsVisibleButton((window.pageYOffset > 140) ? true : false)
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleButtonVisibility)
-    return () => window.removeEventListener('scroll', toggleButtonVisibility)
+    window.addEventListener('scroll', handlePageScroll)
+    return () => window.removeEventListener('scroll', handlePageScroll)
   }, []);
 
   return (
     <div className="App">
       <h1>Star Wars Characters</h1> 
 
-      {isLoading && <Loader className="loader" backdrop size="lg" inverse content="Fetching characters..." vertical />}
+      {isLoading 
+        && <Loader 
+          className="loader" 
+          backdrop 
+          size="lg" 
+          inverse 
+          content="Fetching characters..." 
+          vertical
+        />
+      }
 
       {fetchedData && <div className="page-pagination-top">
         <IconButton 
           onClick={() => {
-            getStarWarsCharacter(fetchedData.previous, (data) => {
+            fetchStarWarsCharacter(fetchedData.previous, (data) => {
               setFetchedData(data)
               setCharacters(data.results)
             }, setIsLoading)
@@ -60,7 +69,7 @@ const App = () => {
 
         <IconButton
           onClick={() => {
-            getStarWarsCharacter(fetchedData.next, (data) => {
+            fetchStarWarsCharacter(fetchedData.next, (data) => {
               setFetchedData(data)
               setCharacters(data.results)
             }, setIsLoading)
@@ -79,7 +88,7 @@ const App = () => {
       {fetchedData && isVisibleButton && <div className="page-pagination-bottom">
         <IconButton 
           onClick={() => {
-            getStarWarsCharacter(fetchedData.previous, (data) => {
+            fetchStarWarsCharacter(fetchedData.previous, (data) => {
               setFetchedData(data)
               setCharacters(data.results)
             }, setIsLoading)
@@ -94,7 +103,7 @@ const App = () => {
         
         <IconButton
           onClick={() => {
-            getStarWarsCharacter(fetchedData.next, (data) => {
+            fetchStarWarsCharacter(fetchedData.next, (data) => {
               setFetchedData(data)
               setCharacters(data.results)
             }, setIsLoading)
