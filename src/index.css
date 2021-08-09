@@ -1,23 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Uchen&display=swap");
-
-html {
+html, .App {
   min-height: 100vh;
 }
 
-body, #root, .App, .loader {
-  min-height: inherit;
-}
-
 body {
-  font-size: medium;
   background-image: url(https://pbs.twimg.com/media/EVvJpmgU8AAEq2q?format=jpg&name=large);
 }
 
 h1 {
   text-align: center;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 0.8px yellow;
-  padding: 15px 0px 20px 0px;
+  -webkit-text-stroke: 0.03em yellow;
+  padding: 0.5em 0em 0.5em 0em;
 }
 
 .App {
@@ -28,15 +21,13 @@ h1 {
 .dossier-container {
   background-color: rgb(255, 255, 255);
   opacity: 0.7;
-  border-radius: 2px;
   color: black;
-  height: 250px;
-  max-width: 420px;
-  margin: 8px 8px;
+  height: 18em;
+  margin: 0.5em 0.5em;
 }
 
 .dossier-title {
-  font-size: 23px;
+  font-size: 2em;
 }
 
 .page-pagination-top, .page-pagination-bottom {
@@ -45,23 +36,20 @@ h1 {
   align-items: center;
   justify-content: space-around;
   opacity: 0.9;
-  width: 150px;
-  margin-left: 64px;
+  width: 13em;
+  margin-left: 6.6em;
 }
 
 .page-up-button {
-  bottom: 10px;
   position: fixed;
+  bottom: 1em;
+  right: 1em;
+  margin-right: 7em;
 }
 
 .page-pagination-bottom {
   position: relative;
-  bottom: 10px;
-}
-
-.page-up-button {
-  right: 12px;
-  margin-right: 63px;
+  bottom: 1em;
 }
 
 .page-number {
@@ -70,5 +58,5 @@ h1 {
 }
 
 .dossiers-container {
-  margin: 10px 63px 20px 63px;
+  margin: 1em 7em 2em 7em;
 }
