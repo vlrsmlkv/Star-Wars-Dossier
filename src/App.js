@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import { fetchStarWarsCharacter } from './utils';
 
 import Dossier from './Dossier';
+import PagePaginationButtons from './PagePaginationButtons';
+import { starWarsUrl } from './starWarsUrl';
 
 const App = () => {
 
@@ -17,8 +19,6 @@ const App = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isVisibleButton, setIsVisibleButton] = useState(false);
-
-  const starWarsUrl = 'https://swapi.py4e.com/api/people/';
   
   useEffect(() => {
     fetchStarWarsCharacter(starWarsUrl, (data) => {
@@ -51,69 +51,34 @@ const App = () => {
         />
       }
 
-      {fetchedData && <div className="page-pagination-top">
-        <IconButton 
-          onClick={() => {
-            fetchStarWarsCharacter(fetchedData.previous, (data) => {
-              setFetchedData(data)
-              setCharacters(data.results)
-            }, setIsLoading)
-            setPageNumber(fetchedData.previous ? pageNumber-1 : pageNumber)
-          }} 
-          icon={<Icon icon="arrow-left" />} 
-          placement="right"
-          disabled={!fetchedData.previous || isLoading}>
-        </IconButton> 
-
-        <div className="page-number">{pageNumber}</div>
-
-        <IconButton
-          onClick={() => {
-            fetchStarWarsCharacter(fetchedData.next, (data) => {
-              setFetchedData(data)
-              setCharacters(data.results)
-            }, setIsLoading)
-            setPageNumber(fetchedData.next ? pageNumber+1 : pageNumber)
-          }} 
-          icon={<Icon icon="arrow-right"/>} 
-          placement="right"
-          disabled={!fetchedData.next || isLoading}>
-        </IconButton>
-      </div>}  
+      {fetchedData 
+        && <PagePaginationButtons
+          fetchedData={fetchedData}
+          setFetchedData={setFetchedData}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          setCharacters={setCharacters}
+        />
+      }  
       
       <FlexboxGrid className="dossiers-container" justify="start">
         {characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
       </FlexboxGrid>
 
-      {fetchedData && isVisibleButton && <div className="page-pagination-bottom">
-        <IconButton 
-          onClick={() => {
-            fetchStarWarsCharacter(fetchedData.previous, (data) => {
-              setFetchedData(data)
-              setCharacters(data.results)
-            }, setIsLoading)
-            setPageNumber(fetchedData.previous ? pageNumber-1 : pageNumber)
-          }} 
-          icon={<Icon icon="arrow-left" />} 
-          placement="right"
-          disabled={!fetchedData.previous || isLoading}>
-        </IconButton> 
-
-        <div className="page-number">{pageNumber}</div>
-        
-        <IconButton
-          onClick={() => {
-            fetchStarWarsCharacter(fetchedData.next, (data) => {
-              setFetchedData(data)
-              setCharacters(data.results)
-            }, setIsLoading)
-            setPageNumber(fetchedData.next ? pageNumber+1 : pageNumber)
-          }} 
-          icon={<Icon icon="arrow-right"/>} 
-          placement="right"
-          disabled={!fetchedData.next || isLoading}>
-        </IconButton>
-      </div>} 
+      {fetchedData 
+        && isVisibleButton 
+          && <PagePaginationButtons
+            fetchedData={fetchedData}
+            setFetchedData={setFetchedData}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            setCharacters={setCharacters}
+          />
+      } 
       
       {fetchedData && <div className="page-up-button">
         <IconButton
