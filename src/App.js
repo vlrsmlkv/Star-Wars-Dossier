@@ -1,8 +1,9 @@
-import { Icon, IconButton } from 'rsuite';
 import { Loader } from 'rsuite';
 import { FlexboxGrid } from 'rsuite';
 
 import './index.css';
+
+import { starWarsUrl } from './starWarsUrl';
 
 import { useState } from 'react'; 
 import { useEffect } from 'react';
@@ -10,7 +11,7 @@ import { fetchStarWarsCharacter } from './utils';
 
 import Dossier from './Dossier';
 import PagePaginationButtons from './PagePaginationButtons';
-import { starWarsUrl } from './starWarsUrl';
+import PageUpButton from './PageUpButton';
 
 const App = () => {
 
@@ -80,17 +81,11 @@ const App = () => {
           />
       } 
       
-      {fetchedData && <div className="page-up-button">
-        <IconButton
-          style={{display: isVisibleButton ? "inline" : "none"}}
-          icon={<Icon icon="angle-double-up"/>}
-          size="lg"
-          onClick={() => window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          })}>
-        </IconButton>
-      </div>}
+      {fetchedData 
+        && <PageUpButton
+          isVisibleButton={isVisibleButton}
+        />
+      }
 
     </div>
   );
