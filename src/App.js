@@ -82,9 +82,11 @@ const App = () => {
       } 
       
       {fetchedData 
-        && <PageUpButton
-          isVisibleButton={isVisibleButton}
-        />
+        && <FlexboxGrid justify="end"> 
+            <PageUpButton
+              isVisibleButton={isVisibleButton}
+            />
+        </FlexboxGrid>
       }
 
     </div>
