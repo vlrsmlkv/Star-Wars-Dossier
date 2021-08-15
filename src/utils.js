@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const fetchStarWarsCharacter = (url, onSuccess, setIsLoading) => { 
+const fetchStarWarsCharacter = (url, setFetchedData, setIsLoading) => { 
   setIsLoading(true)
   axios.get(url) 
     .then(response => {
-      onSuccess(response.data);
+      setFetchedData(response.data);
       setIsLoading(false);
     })
     .catch(error => console.error(`Error: ${error}`))

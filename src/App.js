@@ -15,18 +15,15 @@ import PageUpButton from './PageUpButton';
 
 const App = () => {
 
-  const [characters, setCharacters] = useState(null);
   const [fetchedData, setFetchedData] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isVisibleButton, setIsVisibleButton] = useState(false);
   
   useEffect(() => {
-    fetchStarWarsCharacter(starWarsUrl, (data) => {
-      setFetchedData(data)
-      setCharacters(data.results)
-    }, setIsLoading)
+    fetchStarWarsCharacter(starWarsUrl, setFetchedData, setIsLoading)
   }, []);
+  fetchedData && console.log(fetchedData.results)
   
   const handlePageScroll = () => {
     setIsVisibleButton((window.pageYOffset > 140) ? true : false)
@@ -60,12 +57,11 @@ const App = () => {
           setPageNumber={setPageNumber}
           isLoading={isLoading}
           setIsLoading={setIsLoading}
-          setCharacters={setCharacters}
         />
       }  
       
       <FlexboxGrid className="dossiers-container" justify="start">
-        {characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
+        { fetchedData && fetchedData.results && fetchedData.results.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
       </FlexboxGrid>
 
       {fetchedData 
@@ -77,7 +73,6 @@ const App = () => {
             setPageNumber={setPageNumber}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
-            setCharacters={setCharacters}
           />
       } 
       

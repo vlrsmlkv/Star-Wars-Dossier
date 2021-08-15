@@ -3,7 +3,7 @@ import { FlexboxGrid } from 'rsuite';
 import FlexboxGridItem from 'rsuite/lib/FlexboxGrid/FlexboxGridItem';
 import { fetchStarWarsCharacter } from './utils';
 
-const PagePaginationButtons = ({fetchedData, setFetchedData, pageNumber, setPageNumber, isLoading, setIsLoading, setCharacters}) => {
+const PagePaginationButtons = ({fetchedData, setFetchedData, pageNumber, setPageNumber, isLoading, setIsLoading}) => {
 
   return (
     <FlexboxGrid className="page-pagination" align="middle">
@@ -15,7 +15,6 @@ const PagePaginationButtons = ({fetchedData, setFetchedData, pageNumber, setPage
           onClick={() => {
             fetchStarWarsCharacter(fetchedData.previous, (data) => {
               setFetchedData(data)
-              setCharacters(data.results)
             }, setIsLoading)
             setPageNumber(fetchedData.previous ? pageNumber-1 : pageNumber)
           }}
@@ -33,7 +32,6 @@ const PagePaginationButtons = ({fetchedData, setFetchedData, pageNumber, setPage
           onClick={() => {
             fetchStarWarsCharacter(fetchedData.next, (data) => {
               setFetchedData(data)
-              setCharacters(data.results)
             }, setIsLoading)
             setPageNumber(fetchedData.next ? pageNumber+1 : pageNumber)
           }}
