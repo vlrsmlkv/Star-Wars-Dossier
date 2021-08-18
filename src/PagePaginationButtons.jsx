@@ -1,47 +1,45 @@
 import { Pagination } from 'rsuite';
 import { FlexboxGrid } from 'rsuite';
-import FlexboxGridItem from 'rsuite/lib/FlexboxGrid/FlexboxGridItem';
-import { fetchStarWarsCharacter } from './utils';
 
-const PagePaginationButtons = ({fetchedData, setFetchedData, pageNumber, setPageNumber, isLoading, setIsLoading}) => {
-
-  return (
+const PagePaginationButtons = ({fetchStarWarsCharacter, nextPageUrl, setNextPageUrl, previousPageUrl, setPreviousPageUrl, pageNumber, setPageNumber, isLoading, setIsLoading, setCharacters}) => (
     <FlexboxGrid className="page-pagination" align="middle">
-      <FlexboxGridItem> 
+      <FlexboxGrid.Item> 
         <Pagination  
           prev
           size="lg" 
           pages={0}
           onClick={() => {
-            fetchStarWarsCharacter(fetchedData.previous, (data) => {
-              setFetchedData(data)
+            fetchStarWarsCharacter(previousPageUrl, (data) => {
+              setCharacters(data.results)
+              setNextPageUrl(data.next)
+              setPreviousPageUrl(data.previous)
             }, setIsLoading)
-            setPageNumber(fetchedData.previous ? pageNumber-1 : pageNumber)
+            setPageNumber(previousPageUrl ? pageNumber-1 : pageNumber)
           }}
-          disabled={!fetchedData.previous || isLoading}
+          disabled={!previousPageUrl || isLoading}
         />
-      </FlexboxGridItem>
+      </FlexboxGrid.Item>
 
-      <FlexboxGridItem> <div className="page-number">{pageNumber}</div> </FlexboxGridItem>
+      <FlexboxGrid.Item> <div className="page-number">{pageNumber}</div> </FlexboxGrid.Item>
 
-      <FlexboxGridItem> 
+      <FlexboxGrid.Item> 
         <Pagination 
           next
           size="lg" 
           pages={0}
           onClick={() => {
-            fetchStarWarsCharacter(fetchedData.next, (data) => {
-              setFetchedData(data)
+            fetchStarWarsCharacter(nextPageUrl, (data) => {
+              setCharacters(data.results)
+              setNextPageUrl(data.next)
+              setPreviousPageUrl(data.previous)
             }, setIsLoading)
-            setPageNumber(fetchedData.next ? pageNumber+1 : pageNumber)
+            setPageNumber(nextPageUrl ? pageNumber+1 : pageNumber)
           }}
-          disabled={!fetchedData.next || isLoading}
+          disabled={!nextPageUrl || isLoading}
         />
-      </FlexboxGridItem>
+      </FlexboxGrid.Item>
     </FlexboxGrid>
 
   )
-
-}
 
 export default PagePaginationButtons;

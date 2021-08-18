@@ -1,8 +1,6 @@
 import { FlexboxGrid } from 'rsuite';
 
-const DossierItem = ({name, value}) => {
-
-  return (
+const DossierItem = ({name, value}) => (
     <FlexboxGrid.Item colspan={24}>
       <FlexboxGrid justify="space-around">
         <FlexboxGrid.Item colspan={12}>{name}</FlexboxGrid.Item>
@@ -10,7 +8,5 @@ const DossierItem = ({name, value}) => {
       </FlexboxGrid>
     </FlexboxGrid.Item>
   )
-  
-}
 
 export default DossierItem;

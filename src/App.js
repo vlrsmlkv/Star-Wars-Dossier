@@ -15,15 +15,20 @@ import PageUpButton from './PageUpButton';
 
 const App = () => {
 
-  const [fetchedData, setFetchedData] = useState(null);
+  const [characters, setCharacters] = useState(null); 
+  const [nextPageUrl, setNextPageUrl] = useState(null); 
+  const [previousPageUrl, setPreviousPageUrl] = useState(null); 
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isVisibleButton, setIsVisibleButton] = useState(false);
   
   useEffect(() => {
-    fetchStarWarsCharacter(starWarsUrl, setFetchedData, setIsLoading)
+    fetchStarWarsCharacter(starWarsUrl, (data) => {
+      setNextPageUrl(data.next)
+      setPreviousPageUrl(data.previous)
+      setCharacters(data.results)
+    }, setIsLoading)
   }, []);
-  fetchedData && console.log(fetchedData.results)
   
   const handlePageScroll = () => {
     setIsVisibleButton((window.pageYOffset > 140) ? true : false)
@@ -49,34 +54,42 @@ const App = () => {
         />
       }
 
-      {fetchedData 
+      {characters 
         && <PagePaginationButtons
-          fetchedData={fetchedData}
-          setFetchedData={setFetchedData}
+          fetchStarWarsCharacter={fetchStarWarsCharacter}
+          nextPageUrl={nextPageUrl}
+          setNextPageUrl={setNextPageUrl}
+          previousPageUrl={previousPageUrl}
+          setPreviousPageUrl={setPreviousPageUrl}
           pageNumber={pageNumber}
           setPageNumber={setPageNumber}
           isLoading={isLoading}
           setIsLoading={setIsLoading}
+          setCharacters={setCharacters}
         />
       }  
       
       <FlexboxGrid className="dossiers-container" justify="start">
-        { fetchedData && fetchedData.results && fetchedData.results.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
+      {characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
       </FlexboxGrid>
 
-      {fetchedData 
+      {characters 
         && isVisibleButton 
           && <PagePaginationButtons
-            fetchedData={fetchedData}
-            setFetchedData={setFetchedData}
+            fetchStarWarsCharacter={fetchStarWarsCharacter}
+            nextPageUrl={nextPageUrl}
+            setNextPageUrl={setNextPageUrl}
+            previousPageUrl={previousPageUrl}
+            setPreviousPageUrl={setPreviousPageUrl}
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
+            setCharacters={setCharacters}
           />
       } 
       
-      {fetchedData 
+      {characters 
         && <FlexboxGrid justify="end"> 
             <PageUpButton
               isVisibleButton={isVisibleButton}

@@ -10,9 +10,8 @@ const PageUpButton = ({isVisibleButton}) => {
       })
     
     return (
-      <FlexboxGrid className="page-up-button">
+      <FlexboxGrid className={`page-up-button ${!isVisibleButton && "is-hidden"}`}>
         <IconButton
-          style={{display: !isVisibleButton && "none"}}
           icon={<Icon icon="angle-double-up"/>}
           size="lg"
           onClick={() => scrollToTop()}>
