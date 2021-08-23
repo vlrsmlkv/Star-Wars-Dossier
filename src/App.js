@@ -21,14 +21,20 @@ const App = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isVisibleButton, setIsVisibleButton] = useState(false);
+
+  const fetchCharactersPage = async (pageUrl) => {
+    const {
+      characters,
+      nextPageUrl,
+      previousPageUrl
+    } = await fetchStarWarsCharacter(pageUrl, setIsLoading);
+
+    setCharacters(characters)
+    setNextPageUrl(nextPageUrl)
+    setPreviousPageUrl(previousPageUrl)
+  }
   
-  useEffect(() => {
-    fetchStarWarsCharacter(starWarsUrl, (data) => {
-      setNextPageUrl(data.next)
-      setPreviousPageUrl(data.previous)
-      setCharacters(data.results)
-    }, setIsLoading)
-  }, []);
+  useEffect(() => fetchCharactersPage(starWarsUrl), []);
   
   const handlePageScroll = () => {
     setIsVisibleButton((window.pageYOffset > 140) ? true : false)
@@ -56,16 +62,13 @@ const App = () => {
 
       {characters 
         && <PagePaginationButtons
-          fetchStarWarsCharacter={fetchStarWarsCharacter}
-          nextPageUrl={nextPageUrl}
-          setNextPageUrl={setNextPageUrl}
-          previousPageUrl={previousPageUrl}
-          setPreviousPageUrl={setPreviousPageUrl}
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
+          onPreviousButtonClick={() => fetchCharactersPage(previousPageUrl)}
+          onNextButtonClick={() => fetchCharactersPage(nextPageUrl)}
+          isNextButtonDisabled={!nextPageUrl}
+          isPreviousButtonDisabled={!previousPageUrl}
+          currentPageNumber={pageNumber}
+          setCurrentPageNumber={setPageNumber}
           isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          setCharacters={setCharacters}
         />
       }  
       
@@ -73,27 +76,23 @@ const App = () => {
       {characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
       </FlexboxGrid>
 
-      {characters 
-        && isVisibleButton 
-          && <PagePaginationButtons
-            fetchStarWarsCharacter={fetchStarWarsCharacter}
-            nextPageUrl={nextPageUrl}
-            setNextPageUrl={setNextPageUrl}
-            previousPageUrl={previousPageUrl}
-            setPreviousPageUrl={setPreviousPageUrl}
-            pageNumber={pageNumber}
-            setPageNumber={setPageNumber}
-            isLoading={isLoading}
-            setIsLoading={setIsLoading}
-            setCharacters={setCharacters}
-          />
+      {characters
+        && <PagePaginationButtons
+        onPreviousButtonClick={() => fetchCharactersPage(previousPageUrl)}
+        onNextButtonClick={() => fetchCharactersPage(nextPageUrl)}
+        isNextButtonDisabled={!nextPageUrl}
+        isPreviousButtonDisabled={!previousPageUrl}
+        currentPageNumber={pageNumber}
+        setCurrentPageNumber={setPageNumber}
+        isLoading={isLoading}
+        />
       } 
       
       {characters 
         && <FlexboxGrid justify="end"> 
-            <PageUpButton
-              isVisibleButton={isVisibleButton}
-            />
+          <PageUpButton
+            isVisibleButton={isVisibleButton}
+          />
         </FlexboxGrid>
       }
 

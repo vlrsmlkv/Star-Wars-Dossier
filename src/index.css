@@ -47,6 +47,6 @@ h1 {
   margin: 1em 7em 2em 7em;
 }
 
-.page-up-button.is-hidden {
-  display: none;
+.is-hidden {
+  display: none !important;
 }
