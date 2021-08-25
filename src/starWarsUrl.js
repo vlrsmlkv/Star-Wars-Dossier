@@ -1,0 +1,1 @@
+export const starWarsUrl = 'https://swapi.py4e.com/api/people/';
