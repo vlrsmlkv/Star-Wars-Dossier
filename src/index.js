@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'rsuite/dist/styles/rsuite-default.css';
 
-import App from './containers/components/App';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>

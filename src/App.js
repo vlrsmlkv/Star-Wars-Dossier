@@ -1,16 +1,16 @@
 import { Loader } from 'rsuite';
 import { FlexboxGrid } from 'rsuite';
 
-import '../../index.css';
+import './index.css';
 
-import { starWarsUrl } from '../../commons/consts';
+import { starWarsUrl } from './starWarsUrl';
 
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { fetchStarWarsCharacter } from '../../commons/utils';
+import { fetchStarWarsCharacter } from './utils';
 
-import Dossier from '../../commons/components/Dossier';
-import PagePaginationButtons from '../../commons/components/PagePaginationButtons';
+import Dossier from './Dossier';
+import PagePaginationButtons from './PagePaginationButtons';
 import PageUpButton from './PageUpButton';
 
 const App = () => {
