@@ -5,7 +5,7 @@ import './index.css';
 
 import { starWarsUrl } from './starWarsUrl';
 
-import { useState } from 'react'; 
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { fetchStarWarsCharacter } from './utils';
 
@@ -23,6 +23,7 @@ const App = () => {
   const [isVisibleButton, setIsVisibleButton] = useState(false);
 
   const fetchCharactersPage = async (pageUrl) => {
+
     const {
       characters,
       nextPageUrl,
@@ -62,29 +63,39 @@ const App = () => {
 
       {characters 
         && <PagePaginationButtons
-          onPreviousButtonClick={() => fetchCharactersPage(previousPageUrl)}
-          onNextButtonClick={() => fetchCharactersPage(nextPageUrl)}
+          onPreviousButtonClick={() => {
+            fetchCharactersPage(previousPageUrl);
+            setPageNumber(pageNumber-1)
+          }}
+          onNextButtonClick={() => {
+            fetchCharactersPage(nextPageUrl)
+            setPageNumber(pageNumber+1)
+          }}
           isNextButtonDisabled={!nextPageUrl}
           isPreviousButtonDisabled={!previousPageUrl}
           currentPageNumber={pageNumber}
-          setCurrentPageNumber={setPageNumber}
           isLoading={isLoading}
         />
       }  
       
       <FlexboxGrid className="dossiers-container" justify="start">
-      {characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
+        {characters && characters.map((el,index) => <Dossier key={`character+${index+1}`} data={el}/>)}
       </FlexboxGrid>
 
       {characters
         && <PagePaginationButtons
-        onPreviousButtonClick={() => fetchCharactersPage(previousPageUrl)}
-        onNextButtonClick={() => fetchCharactersPage(nextPageUrl)}
-        isNextButtonDisabled={!nextPageUrl}
-        isPreviousButtonDisabled={!previousPageUrl}
-        currentPageNumber={pageNumber}
-        setCurrentPageNumber={setPageNumber}
-        isLoading={isLoading}
+          onPreviousButtonClick={() => {
+            fetchCharactersPage(previousPageUrl)
+            setPageNumber(pageNumber-1)        
+          }}
+          onNextButtonClick={() => {
+            fetchCharactersPage(nextPageUrl);
+            setPageNumber(pageNumber+1)
+          }}
+          isNextButtonDisabled={!nextPageUrl}
+          isPreviousButtonDisabled={!previousPageUrl}
+          currentPageNumber={pageNumber}
+          isLoading={isLoading}
         />
       } 
       

@@ -4,7 +4,7 @@ import { FlexboxGrid } from 'rsuite';
 const PagePaginationButtons = ({
   onPreviousButtonClick, onNextButtonClick,
   isNextButtonDisabled, isPreviousButtonDisabled,
-  currentPageNumber, setCurrentPageNumber,
+  currentPageNumber,
   isLoading
 }) => (
   <FlexboxGrid className="page-pagination" align="middle">
@@ -13,10 +13,7 @@ const PagePaginationButtons = ({
         prev
         size="lg" 
         pages={0}
-        onClick={() => {
-          onPreviousButtonClick();
-          setCurrentPageNumber(currentPageNumber-1)
-        }}
+        onClick={onPreviousButtonClick}
         disabled={isPreviousButtonDisabled || isLoading}
       />
     </FlexboxGrid.Item>
@@ -32,10 +29,7 @@ const PagePaginationButtons = ({
         next
         size="lg" 
         pages={0}
-        onClick={() => {
-          onNextButtonClick();
-          setCurrentPageNumber(currentPageNumber+1)
-        }}
+        onClick={onNextButtonClick}
         disabled={isNextButtonDisabled || isLoading}
       />
     </FlexboxGrid.Item>
