@@ -3,11 +3,11 @@ import { FlexboxGrid } from 'rsuite';
 
 import '../../index.css';
 
-import { starWarsUrl } from '../../API/consts';
+import { starWarsUrl } from '../../api/consts';
 
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { fetchStarWarsCharacter } from '../../API/api';
+import { fetchStarWarsCharacter } from '../../api/api';
 
 import Dossier from '../../commons/components/Dossier';
 import PagePaginationButtons from '../../commons/components/PagePaginationButtons';
